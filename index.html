@@ -19,17 +19,13 @@
     <script>
         function sendMessage() {
             const botToken = '5601871924:AAGueeaPFUPcXFNVBm8kSmeisMFdaVPcPrA';
-            const userId = 5526735448; // Установите User ID напрямую
+            const userId = 5526735448;
             const message = document.getElementById('message').value;
 
             // Отправка сообщения на Telegram
-            axios.post(https://nikitas000.github.io/Web_Taker/send-message.php`, {
+            axios.post('https://nikitas000.github.io/Web_Taker/send-message.php', {
                 userId: userId,
                 message: message
-            }, {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
             })
             .then(response => {
                 console.log('Сообщение успешно отправлено:', response.data);
