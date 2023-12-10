@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отправка сообщений в Telegram</title>
+</head>
+<body>
+    <h1>Отправка сообщений в Telegram</h1>
+
+    <form id="telegramForm">
+        <label for="message">Сообщение:</label>
+        <input type="text" id="message" name="message" placeholder="Введите сообщение" required>
+        
+        <button type="button" onclick="sendMessage()">Отправить сообщение в Telegram</button>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        function sendMessage() {
+            const botToken = '5601871924:AAGueeaPFUPcXFNVBm8kSmeisMFdaVPcPrA';
+            const userId = 5526735448; // Установите User ID напрямую
+            const message = document.getElementById('message').value;
+
+            // Отправка сообщения на Telegram
+            axios.post(`http://localhost/web-taker/send-message.php`, {
+                userId: userId,
+                message: message
+            }, {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            })
+            .then(response => {
+                console.log('Сообщение успешно отправлено:', response.data);
+                alert('Сообщение успешно отправлено в Telegram!');
+            })
+            .catch(error => {
+                console.error('Ошибка при отправке сообщения:', error);
+                alert('Ошибка при отправке сообщения в Telegram.');
+            });
+        }
+    </script>
+</body>
+</html>
